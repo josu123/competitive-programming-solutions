@@ -1,0 +1,27 @@
+class Solution:
+    # @param A : head node of linked list
+    # @param B : integer
+    # @return the head node in the linked list
+    def removeNthFromEnd(self, head, n):
+        slow = fast = head
+        count = 0
+        while(fast and count < n):
+            fast = fast.next
+            count = count + 1
+        
+        if(fast == None):
+            temp = head
+            if(head is not None):
+                head = head.next
+            temp = None
+            return head
+        prev_of_slow = None
+        while(slow and fast):
+            prev_of_slow = slow
+            slow = slow.next
+            fast = fast.next
+        
+        prev_of_slow.next = slow.next
+        slow = None
+        return head
+	        
